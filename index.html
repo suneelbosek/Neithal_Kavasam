@@ -23,8 +23,8 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f8f9fa;
-            color: #212529;
+            background-color: #f8fafc;
+            color: #1a202c;
         }
         .chart-container {
             position: relative;
@@ -41,30 +41,40 @@
             }
         }
         .gradient-text {
-            background: linear-gradient(90deg, #149ECA, #0D1B2A);
+            background: linear-gradient(90deg, #0cc0df, #0D1B2A);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+        }
+        .timeline-item {
+            opacity: 0;
+            transform: translateX(-30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
         }
         .timeline-item::before {
             content: '';
             position: absolute;
             left: -33px;
-            top: 50%;
+            top: 20px;
             transform: translateY(-50%);
             width: 24px;
             height: 24px;
             border-radius: 50%;
-            background-color: #ff7f50;
-            border: 5px solid #0D1B2A;
-            box-shadow: 0 0 10px rgba(255, 127, 80, 0.5);
+            background-color: #ff7f70;
+            border: 5px solid #1a202c;
+            box-shadow: 0 0 10px rgba(255, 127, 112, 0.5);
+            transition: transform 0.3s ease-out;
+        }
+        .timeline-item.is-visible {
+             opacity: 1;
+             transform: translateX(0);
         }
         .content-card {
             background-color: #ffffff;
-            border: 1px solid #dee2e6;
             border-radius: 0.75rem;
             padding: 2rem;
-            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.07), 0 2px 4px -2px rgb(0 0 0 / 0.07);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-top: 4px solid transparent;
         }
         .content-card:hover {
             transform: translateY(-5px);
@@ -72,8 +82,8 @@
         }
         .fade-in-section {
             opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
         }
         .fade-in-section.is-visible {
             opacity: 1;
@@ -89,10 +99,10 @@
             <div class="flex justify-center items-center gap-4 mb-4">
                 <img src="logo.png" alt="ArcGX Logo" class="h-12 w-12 md:h-16 md:w-16" onerror="this.style.display='none'">
                 <p class="text-3xl md:text-4xl font-bold">
-                    <span style="color: #0cc0df;">Arc</span><span style="color: #212529;">G</span><span style="color: #ff7f70;">X</span>
+                    <span style="color: #0cc0df;">Arc</span><span style="color: #1a202c;">G</span><span style="color: #ff7f70;">X</span>
                 </p>
             </div>
-            <h1 class="text-4xl md:text-6xl font-black text-[#0D1B2A]">
+            <h1 class="text-4xl md:text-6xl font-black text-[#1a202c]">
                 நெய்தல் கவசம்
                 <span class="block text-3xl md:text-5xl mt-2">Neithal Kavasam</span>
             </h1>
@@ -101,19 +111,20 @@
 
         <section id="introduction" class="my-20 text-center fade-in-section">
              <div class="max-w-4xl mx-auto">
-                <h2 class="text-3xl md:text-4xl font-bold mb-6 text-[#0D1B2A]">Protecting India's Coastline with Predictive Analytics</h2>
-                <p class="text-lg text-gray-700 leading-relaxed">
+                <h2 class="text-3xl md:text-4xl font-bold mb-6 text-[#1a202c]">Protecting India's Coastline with Predictive Analytics</h2>
+                <p class="text-lg text-gray-600 leading-relaxed">
                     <b>ArcGX</b> is a pioneering startup proud to present <b>Neithal Kavasam</b>, our flagship project designed to address the critical challenge of coastal vulnerability. Our mission is to transform how maritime stakeholders manage coastal assets by shifting the paradigm from reactive repairs to proactive, data-driven resilience.
                 </p>
-                <p class="text-lg text-gray-700 leading-relaxed mt-4">
+                <p class="text-lg text-gray-600 leading-relaxed mt-4">
                     The <b>Neithal Kavasam</b> platform synthesizes complex environmental data into a simple, actionable risk score using our core innovation, the <b>Coastal Vulnerability Index (CVI)</b>. This allows port authorities, industrial plants, and coastal communities to identify, monitor, and predict erosion hotspots with unprecedented accuracy, empowering them to protect critical infrastructure and enhance operational safety.
                 </p>
-                <div class="mt-12 bg-gray-100 border-l-4 border-[#ff7f50] p-6 rounded-r-lg">
-                    <blockquote class="text-xl italic text-gray-800">
+                <div class="mt-16 bg-white p-8 rounded-lg shadow-lg relative overflow-hidden">
+                    <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-[#0cc0df] to-[#ff7f70]"></div>
+                    <blockquote class="text-2xl italic text-[#1a202c] font-medium">
                         "வருமுன்னர்க் காவாதான் வாழ்க்கை எரிமுன்னர்<br>
                         வைத்தூறு போலக் கெடும்."
                     </blockquote>
-                    <cite class="block text-right mt-4 text-gray-600 not-italic">
+                    <cite class="block text-center mt-4 text-gray-500 not-italic">
                         - திருக்குறள் (435) <br>
                         "The life of one who does not guard against future adversity will perish like a bale of straw before a fire."
                     </cite>
@@ -122,41 +133,41 @@
         </section>
 
         <section id="problem" class="my-24 fade-in-section">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-[#0D1B2A]">The Critical Information Gap for Coastal Managers</h2>
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-[#1a202c]">The Critical Information Gap for Coastal Managers</h2>
             <div class="grid md:grid-cols-2 gap-8">
-                <div class="content-card border-t-4 border-[#ff7f50]">
-                    <h3 class="text-xl font-bold mb-3 text-[#149ECA]">Problem 1: Data is Too Broad or Too Slow</h3>
+                <div class="content-card border-t-4 border-[#ff7f70]">
+                    <h3 class="text-xl font-bold mb-3 text-[#1a202c]">Problem 1: Data is Too Broad or Too Slow</h3>
                     <p class="text-gray-600">Government data provides a national overview but lacks the real-time, high-resolution detail needed for specific operational decisions. Conversely, private surveys are project-based, expensive, and provide only a static snapshot in time, failing to capture continuous change.</p>
                 </div>
-                <div class="content-card border-t-4 border-[#149ECA]">
-                    <h3 class="text-xl font-bold mb-3 text-[#149ECA]">Problem 2: Lack of Actionable Intelligence</h3>
+                <div class="content-card border-t-4 border-[#0cc0df]">
+                    <h3 class="text-xl font-bold mb-3 text-[#1a202c]">Problem 2: Lack of Actionable Intelligence</h3>
                     <p class="text-gray-600">Raw geospatial data—maps, charts, and tables—requires expert interpretation. A non-technical port manager lacks a simple tool that clearly states: "This 200m section of your property is at high risk of erosion within the next six months." This leads to reactive, costly emergency repairs.</p>
                 </div>
             </div>
         </section>
 
         <section id="solution" class="my-24 fade-in-section">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 text-[#0D1B2A]">Our Solution: The Neithal Kavasam Platform</h2>
-            <p class="text-center text-lg text-gray-700 mb-12 max-w-3xl mx-auto">The Neithal Kavasam dashboard is powered by our Data Fusion Engine, transforming complex data streams into clear, actionable intelligence.</p>
-            <div class="bg-gray-100 p-8 rounded-lg shadow-inner border">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 text-[#1a202c]">Our Solution: The Neithal Kavasam Platform</h2>
+            <p class="text-center text-lg text-gray-600 mb-12 max-w-3xl mx-auto">The Neithal Kavasam dashboard is powered by our Data Fusion Engine, transforming complex data streams into clear, actionable intelligence.</p>
+            <div class="bg-gray-50 p-8 rounded-lg border">
                 <div class="flex flex-col md:flex-row items-center justify-center space-y-6 md:space-y-0 md:space-x-6 text-center">
                     <div class="flex items-center space-x-4">
-                        <div class="p-4 bg-white border rounded-lg shadow-md"><p class="text-4xl">🛰️</p><p class="font-semibold mt-2">Satellites</p></div>
-                        <div class="p-4 bg-white border rounded-lg shadow-md"><p class="text-4xl">🚁</p><p class="font-semibold mt-2">Drones</p></div>
+                        <div class="p-4 bg-white border rounded-lg shadow-sm"><p class="text-4xl">🛰️</p><p class="font-semibold mt-2">Satellites</p></div>
+                        <div class="p-4 bg-white border rounded-lg shadow-sm"><p class="text-4xl">🚁</p><p class="font-semibold mt-2">Drones</p></div>
                     </div>
-                    <div class="text-5xl font-thin text-gray-400 mx-4 hidden md:block">&rarr;</div>
-                    <div class="text-5xl font-thin text-gray-400 mx-4 md:hidden">&darr;</div>
-                    <div class="p-5 bg-[#0D1B2A] text-white rounded-lg shadow-xl font-bold text-lg">Data Fusion Engine</div>
-                    <div class="text-5xl font-thin text-gray-400 mx-4 hidden md:block">&rarr;</div>
-                    <div class="text-5xl font-thin text-gray-400 mx-4 md:hidden">&darr;</div>
-                    <div class="p-5 bg-[#149ECA] text-white rounded-lg shadow-xl font-bold text-lg">Predictive Dashboard</div>
+                    <div class="text-5xl font-thin text-gray-300 mx-4 hidden md:block">&rarr;</div>
+                    <div class="text-5xl font-thin text-gray-300 mx-4 md:hidden">&darr;</div>
+                    <div class="p-5 bg-[#1a202c] text-white rounded-lg shadow-lg font-bold text-lg">Data Fusion Engine</div>
+                    <div class="text-5xl font-thin text-gray-300 mx-4 hidden md:block">&rarr;</div>
+                    <div class="text-5xl font-thin text-gray-300 mx-4 md:hidden">&darr;</div>
+                    <div class="p-5 bg-gradient-to-r from-[#0cc0df] to-[#149ECA] text-white rounded-lg shadow-lg font-bold text-lg">Predictive Dashboard</div>
                 </div>
             </div>
         </section>
 
         <section id="cvi" class="my-24 fade-in-section">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 text-[#0D1B2A]">Core Innovation: The Coastal Vulnerability Index (CVI)</h2>
-            <p class="text-center text-lg text-gray-700 mb-10 max-w-3xl mx-auto">The CVI is our unique, algorithmically calculated risk score. This radar chart visualizes the key factors contributing to vulnerability, allowing for quick comparison between different coastal sections.</p>
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 text-[#1a202c]">Core Innovation: The Coastal Vulnerability Index (CVI)</h2>
+            <p class="text-center text-lg text-gray-600 mb-10 max-w-3xl mx-auto">The CVI is our unique, algorithmically calculated risk score. This radar chart visualizes the key factors contributing to vulnerability, allowing for quick comparison between different coastal sections.</p>
             <div class="content-card">
                 <div class="chart-container">
                     <canvas id="cviChart"></canvas>
@@ -165,61 +176,55 @@
         </section>
         
         <section id="business-plan" class="my-24 fade-in-section">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 text-[#0D1B2A]">Our Business Plan: A Subscription-Based Model</h2>
-            <p class="text-center text-lg text-gray-700 mb-12 max-w-3xl mx-auto">We will operate on a B2B/B2G Software-as-a-Service (SaaS) model, offering tiered annual subscriptions. This provides clients with continuous data updates, platform improvements, and dedicated support without a large upfront capital expenditure.</p>
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 text-[#1a202c]">Our Business Plan: A Subscription-Based Model</h2>
+            <p class="text-center text-lg text-gray-600 mb-12 max-w-3xl mx-auto">We will operate on a B2B/B2G Software-as-a-Service (SaaS) model, offering tiered annual subscriptions. This provides clients with continuous data updates, platform improvements, and dedicated support without a large upfront capital expenditure.</p>
             <div class="grid md:grid-cols-3 gap-8">
-                <div class="content-card">
-                    <h3 class="font-bold text-xl text-center text-white bg-[#0D1B2A] py-2 rounded-t-lg">Enterprise</h3>
-                    <div class="p-6 border-x border-b rounded-b-lg">
-                        <p class="font-semibold text-gray-700 mb-4">For Major Ports & Industries</p>
-                        <ul class="space-y-2 text-gray-600">
-                            <li>✓ Full Dashboard Access</li>
-                            <li>✓ High-Frequency Drone Scans</li>
-                            <li>✓ Predictive Analytics</li>
-                            <li>✓ API Integration</li>
-                            <li>✓ Dedicated Support</li>
-                        </ul>
-                    </div>
+                <div class="content-card text-center">
+                    <h3 class="font-bold text-2xl mb-4" style="color: #1a202c;">Enterprise</h3>
+                    <p class="font-semibold text-gray-500 mb-6">For Major Ports & Industries</p>
+                    <ul class="space-y-3 text-gray-600 text-left">
+                        <li>✓ Full Dashboard Access</li>
+                        <li>✓ High-Frequency Drone Scans</li>
+                        <li>✓ Predictive Analytics</li>
+                        <li>✓ API Integration</li>
+                        <li>✓ Dedicated Support</li>
+                    </ul>
                 </div>
-                <div class="content-card">
-                    <h3 class="font-bold text-xl text-center text-white bg-[#149ECA] py-2 rounded-t-lg">Professional</h3>
-                    <div class="p-6 border-x border-b rounded-b-lg">
-                        <p class="font-semibold text-gray-700 mb-4">For Government & Infrastructure</p>
-                        <ul class="space-y-2 text-gray-600">
-                            <li>✓ Full Dashboard Access</li>
-                            <li>✓ Quarterly Drone Scans</li>
-                            <li>✓ CVI Monitoring</li>
-                            <li>✓ Standard Support</li>
-                        </ul>
-                    </div>
+                <div class="content-card text-center border-t-4 border-[#0cc0df] transform scale-105 shadow-2xl">
+                    <h3 class="font-bold text-2xl mb-4" style="color: #0cc0df;">Professional</h3>
+                    <p class="font-semibold text-gray-500 mb-6">For Government & Infrastructure</p>
+                    <ul class="space-y-3 text-gray-600 text-left">
+                        <li>✓ Full Dashboard Access</li>
+                        <li>✓ Quarterly Drone Scans</li>
+                        <li>✓ CVI Monitoring</li>
+                        <li>✓ Standard Support</li>
+                    </ul>
                 </div>
-                <div class="content-card">
-                    <h3 class="font-bold text-xl text-center text-white bg-[#ff7f50] py-2 rounded-t-lg">Community</h3>
-                    <div class="p-6 border-x border-b rounded-b-lg">
-                        <p class="font-semibold text-gray-700 mb-4">For Local Bodies & NGOs</p>
-                        <ul class="space-y-2 text-gray-600">
-                            <li>✓ Essential Dashboard</li>
-                            <li>✓ Annual CVI Report</li>
-                            <li>✓ Erosion Hotspot Alerts</li>
-                            <li>✓ Community Support</li>
-                        </ul>
-                    </div>
+                <div class="content-card text-center">
+                    <h3 class="font-bold text-2xl mb-4" style="color: #ff7f70;">Community</h3>
+                    <p class="font-semibold text-gray-500 mb-6">For Local Bodies & NGOs</p>
+                    <ul class="space-y-3 text-gray-600 text-left">
+                        <li>✓ Essential Dashboard</li>
+                        <li>✓ Annual CVI Report</li>
+                        <li>✓ Erosion Hotspot Alerts</li>
+                        <li>✓ Community Support</li>
+                    </ul>
                 </div>
             </div>
         </section>
 
         <section id="tech-stack" class="my-24 fade-in-section">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-[#0D1B2A]">Our Technology Stack</h2>
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-[#1a202c]">Our Technology Stack</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-                <div class="content-card"><h3 class="text-2xl font-bold mb-3 text-[#149ECA]">Drone Platform</h3><p class="text-6xl mb-3">🚁</p><p class="font-semibold">VTOL Fixed-Wing Drone</p><p class="text-gray-600 mt-1">Efficiently surveys large coastal areas.</p></div>
-                <div class="content-card"><h3 class="text-2xl font-bold mb-3 text-[#149ECA]">Drone Sensors</h3><p class="text-6xl mb-3">📸</p><p class="font-semibold">Sony A7R IV & MicaSense RedEdge-P</p><p class="text-gray-600 mt-1">For 3D models & vegetation health.</p></div>
-                <div class="content-card"><h3 class="text-2xl font-bold mb-3 text-[#149ECA]">Satellite Data</h3><p class="text-6xl mb-3">🛰️</p><p class="font-semibold">Sentinel-2 & Landsat 8/9</p><p class="text-gray-600 mt-1">For historical & continuous analysis.</p></div>
+                <div class="content-card"><h3 class="text-2xl font-bold mb-3 text-[#1a202c]">Drone Platform</h3><p class="text-6xl mb-3">🚁</p><p class="font-semibold">VTOL Fixed-Wing Drone</p><p class="text-gray-600 mt-1">Efficiently surveys large coastal areas.</p></div>
+                <div class="content-card"><h3 class="text-2xl font-bold mb-3 text-[#1a202c]">Drone Sensors</h3><p class="text-6xl mb-3">📸</p><p class="font-semibold">Sony A7R IV & MicaSense RedEdge-P</p><p class="text-gray-600 mt-1">For 3D models & vegetation health.</p></div>
+                <div class="content-card"><h3 class="text-2xl font-bold mb-3 text-[#1a202c]">Satellite Data</h3><p class="text-6xl mb-3">🛰️</p><p class="font-semibold">Sentinel-2 & Landsat 8/9</p><p class="text-gray-600 mt-1">For historical & continuous analysis.</p></div>
             </div>
         </section>
         
         <section id="customers" class="my-24 fade-in-section">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 text-[#0D1B2A]">Target Customers & Impact</h2>
-            <p class="text-center text-lg text-gray-700 mb-10 max-w-3xl mx-auto">Our platform is designed for a diverse range of maritime and coastal stakeholders, providing tailored risk assessment and operational intelligence.</p>
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 text-[#1a202c]">Target Customers & Impact</h2>
+            <p class="text-center text-lg text-gray-600 mb-10 max-w-3xl mx-auto">Our platform is designed for a diverse range of maritime and coastal stakeholders, providing tailored risk assessment and operational intelligence.</p>
             <div class="content-card">
                 <div class="chart-container h-96">
                     <canvas id="impactChart"></canvas>
@@ -228,46 +233,76 @@
         </section>
 
         <section id="roadmap" class="my-24 fade-in-section">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-16 text-[#0D1B2A]">Our Execution Roadmap</h2>
-            <div class="relative pl-10 border-l-4 border-[#0D1B2A]">
-                <div class="mb-16 relative timeline-item"><h3 class="text-xl font-bold text-[#149ECA]">Phase 1: Foundation & MVP (Months 1-6)</h3><p class="text-gray-600 mt-2">Develop the core CVI algorithm and data pipeline. Build the MVP dashboard and validate with a pilot study along the Chennai-Mahabalipuram coast.</p></div>
-                <div class="mb-16 relative timeline-item"><h3 class="text-xl font-bold text-[#149ECA]">Phase 2: Pilot Client & Enhancement (Months 7-12)</h3><p class="text-gray-600 mt-2">Onboard a pilot client (e.g., a local port) for a trial. Refine the product based on user feedback and integrate the predictive analytics model.</p></div>
-                <div class="relative timeline-item"><h3 class="text-xl font-bold text-[#149ECA]">Phase 3: Scale-Up & Commercialization (Months 13-24)</h3><p class="text-gray-600 mt-2">Begin sales and marketing to acquire paying customers. Expand service to other key coastal areas and scale the cloud infrastructure.</p></div>
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-16 text-[#1a202c]">Our Execution Roadmap</h2>
+            <div class="relative pl-10 border-l-4 border-[#1a202c]">
+                <div class="mb-12 relative timeline-item">
+                    <h3 class="text-2xl font-bold text-[#1a202c] mb-3">Phase 1: Foundation & MVP (Months 1-6)</h3>
+                    <ul class="list-disc list-inside space-y-2 text-gray-600">
+                        <li>Finalize company registration and procure essential software.</li>
+                        <li>Develop backend data pipeline for satellite imagery.</li>
+                        <li>Create Version 1.0 of the CVI algorithm.</li>
+                        <li>Build the basic user dashboard and conduct pilot drone surveys.</li>
+                        <li>Demonstrate a working MVP to stakeholders.</li>
+                    </ul>
+                </div>
+                <div class="mb-12 relative timeline-item">
+                    <h3 class="text-2xl font-bold text-[#1a202c] mb-3">Phase 2: Pilot Client & Enhancement (Months 7-12)</h3>
+                     <ul class="list-disc list-inside space-y-2 text-gray-600">
+                        <li>Engage a pilot client (e.g., a local port) for a free trial.</li>
+                        <li>Gather extensive user feedback to refine UI/UX.</li>
+                        <li>Integrate the predictive analytics model for erosion forecasting.</li>
+                        <li>Develop a detailed case study quantifying the value provided.</li>
+                        <li>Finalize the subscription pricing model.</li>
+                    </ul>
+                </div>
+                <div class="relative timeline-item">
+                    <h3 class="text-2xl font-bold text-[#1a202c] mb-3">Phase 3: Scale-Up & Commercialization (Months 13-24)</h3>
+                    <ul class="list-disc list-inside space-y-2 text-gray-600">
+                        <li>Launch sales and marketing campaigns to acquire paying customers.</li>
+                        <li>Expand service coverage to other key coastal states.</li>
+                        <li>Hire key personnel for business development and drone operations.</li>
+                        <li>Develop the "On-Demand Drone Scan" feature within the platform.</li>
+                        <li>Scale up cloud infrastructure to handle multiple clients.</li>
+                    </ul>
+                </div>
             </div>
         </section>
 
         <section id="ushus-alignment" class="my-24 fade-in-section">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-[#0D1B2A]">Alignment with USHUS Program Objectives</h2>
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-[#1a202c]">Alignment with USHUS Program Objectives</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="content-card text-center"><p class="text-4xl font-black text-[#ff7f50]">#2</p><h3 class="text-lg font-bold mt-2 text-[#149ECA]">AI & Machine Learning</h3></div>
-                <div class="content-card text-center"><p class="text-4xl font-black text-[#ff7f50]">#4</p><h3 class="text-lg font-bold mt-2 text-[#149ECA]">Smart Technologies</h3></div>
-                <div class="content-card text-center"><p class="text-4xl font-black text-[#ff7f50]">#8</p><h3 class="text-lg font-bold mt-2 text-[#149ECA]">Simpler & Safer Sector</h3></div>
-                <div class="content-card text-center"><p class="text-4xl font-black text-[#ff7f50]">#9</p><h3 class="text-lg font-bold mt-2 text-[#149ECA]">Coastal Communities</h3></div>
-                <div class="content-card text-center sm:col-span-2 lg:col-span-1"><p class="text-4xl font-black text-[#ff7f50]">#10</p><h3 class="text-lg font-bold mt-2 text-[#149ECA]">Direct Maritime Application</h3></div>
+                <div class="content-card text-center"><p class="text-4xl font-black text-[#ff7f70]">#2</p><h3 class="text-lg font-bold mt-2 text-[#1a202c]">AI & Machine Learning</h3></div>
+                <div class="content-card text-center"><p class="text-4xl font-black text-[#ff7f70]">#4</p><h3 class="text-lg font-bold mt-2 text-[#1a202c]">Smart Technologies</h3></div>
+                <div class="content-card text-center"><p class="text-4xl font-black text-[#ff7f70]">#8</p><h3 class="text-lg font-bold mt-2 text-[#1a202c]">Simpler & Safer Sector</h3></div>
+                <div class="content-card text-center"><p class="text-4xl font-black text-[#ff7f70]">#9</p><h3 class="text-lg font-bold mt-2 text-[#1a202c]">Coastal Communities</h3></div>
+                <div class="content-card text-center sm:col-span-2 lg:col-span-1"><p class="text-4xl font-black text-[#ff7f70]">#10</p><h3 class="text-lg font-bold mt-2 text-[#1a202c]">Direct Maritime Application</h3></div>
             </div>
         </section>
 
         <footer class="text-center mt-20 mb-8 fade-in-section">
-            <p class="text-gray-500">ArcGX presents Neithal Kavasam | A CSL USHUS Program Applicant</p>
+            <p class="text-gray-500">Created by Suneel Bose for ArcGX | A CSL USHUS Program Applicant</p>
         </footer>
 
     </main>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            const observer = new IntersectionObserver((entries) => {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('is-visible');
                     }
                 });
-            }, {
-                threshold: 0.1
-            });
+            }, observerOptions);
 
-            document.querySelectorAll('.fade-in-section').forEach(section => {
-                observer.observe(section);
-            });
+            const targets = document.querySelectorAll('.fade-in-section, .timeline-item');
+            targets.forEach(target => observer.observe(target));
         });
 
         const wrapLabels = (label, maxLen = 16) => {
@@ -311,36 +346,36 @@
                 datasets: [{
                     label: 'High-Risk Section',
                     data: [8, 9, 7, 4],
-                    backgroundColor: 'rgba(255, 127, 80, 0.2)',
-                    borderColor: '#ff7f50',
-                    pointBackgroundColor: '#ff7f50',
+                    backgroundColor: 'rgba(255, 127, 112, 0.2)',
+                    borderColor: '#ff7f70',
+                    pointBackgroundColor: '#ff7f70',
                     pointBorderColor: '#fff',
                     pointHoverBackgroundColor: '#fff',
-                    pointHoverBorderColor: '#ff7f50'
+                    pointHoverBorderColor: '#ff7f70'
                 }, {
                     label: 'Low-Risk Section',
                     data: [2, 3, 3, 8],
-                    backgroundColor: 'rgba(20, 158, 202, 0.2)',
-                    borderColor: '#149ECA',
-                    pointBackgroundColor: '#149ECA',
+                    backgroundColor: 'rgba(12, 192, 223, 0.2)',
+                    borderColor: '#0cc0df',
+                    pointBackgroundColor: '#0cc0df',
                     pointBorderColor: '#fff',
                     pointHoverBackgroundColor: '#fff',
-                    pointHoverBorderColor: '#149ECA'
+                    pointHoverBorderColor: '#0cc0df'
                 }]
             },
             options: {
                 maintainAspectRatio: false,
                 scales: {
                     r: {
-                        angleLines: { color: '#dee2e6' },
-                        grid: { color: '#dee2e6' },
+                        angleLines: { color: '#e2e8f0' },
+                        grid: { color: '#e2e8f0' },
                         pointLabels: { 
                             font: { size: 12, weight: 'bold' },
-                            color: '#0D1B2A'
+                            color: '#1a202c'
                         },
                         ticks: {
                             backdropColor: 'transparent',
-                            color: '#6c757d',
+                            color: '#64748b',
                             stepSize: 2
                         },
                         suggestedMin: 0,
@@ -368,7 +403,7 @@
                 datasets: [{
                     label: 'Applicability & Impact Score',
                     data: [9.5, 8.5, 8, 9, 9],
-                    backgroundColor: ['#0D1B2A', '#149ECA', '#4682B4', '#ff7f50', '#fca311'],
+                    backgroundColor: ['#1a202c', '#0cc0df', '#4a5568', '#ff7f70', '#f59e0b'],
                     borderRadius: 4
                 }]
             },
@@ -379,12 +414,12 @@
                     x: {
                         beginAtZero: true,
                         grid: { display: false },
-                        ticks: { font: { weight: '600' }, color: '#0D1B2A' },
+                        ticks: { font: { weight: '600' }, color: '#1a202c' },
                         suggestedMax: 10
                     },
                     y: {
                         grid: { color: 'rgba(0, 0, 0, 0.05)' },
-                        ticks: { font: { weight: '600' }, color: '#0D1B2A' }
+                        ticks: { font: { weight: '600' }, color: '#1a202c' }
                     }
                 },
                 plugins: {
