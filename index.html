@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Chosen Palette: Vibrant Ocean & Coral -->
+    <!-- Application Structure Plan: A top-down narrative SPA. The structure guides the user logically from the core problem to the proposed solution, technology, and execution plan. This linear, storytelling approach is ideal for a pitch or proposal, making complex information digestible in a single scrolling experience. Key sections include Problem, Solution (visualized as a flow), the CVI innovation (Radar Chart), Tech Stack (Icon cards), Target Market (Bar Chart), Roadmap (Timeline), and USHUS Alignment (Grid). This structure was chosen to build a compelling case step-by-step, maximizing clarity and impact. -->
+    <!-- Visualization & Content Choices: 
+        - Problem: Goal: Compare -> Viz: Side-by-side cards -> Justification: Clearly contrasts the two main pain points. Method: HTML/Tailwind.
+        - Solution Flow: Goal: Organize -> Viz: HTML/CSS Flowchart -> Justification: Shows the data-to-dashboard process intuitively. Method: HTML/Tailwind.
+        - CVI: Goal: Compare/Inform -> Viz: Radar Chart -> Justification: Ideal for comparing multi-variable profiles (high vs. low risk). Library: Chart.js.
+        - Target Customers: Goal: Compare -> Viz: Horizontal Bar Chart -> Justification: Ranks the applicability/impact for different sectors. Library: Chart.js.
+        - Roadmap: Goal: Organize/Change -> Viz: Vertical Timeline -> Justification: Clearly shows chronological project phases. Method: HTML/Tailwind.
+        - USHUS Alignment: Goal: Organize -> Viz: Grid of cards -> Justification: Maps features to objectives in a scannable format. Method: HTML/Tailwind.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <title>ArcGX | Neithal Kavasam</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9fa;
+            color: #212529;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 550px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 320px;
+            max-height: 450px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 380px;
+            }
+        }
+        .gradient-text {
+            background: linear-gradient(90deg, #149ECA, #0D1B2A);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -33px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background-color: #ff7f50;
+            border: 5px solid #0D1B2A;
+            box-shadow: 0 0 10px rgba(255, 127, 80, 0.5);
+        }
+        .content-card {
+            background-color: #ffffff;
+            border: 1px solid #dee2e6;
+            border-radius: 0.75rem;
+            padding: 2rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .content-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        }
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <main class="container mx-auto p-4 md:p-8 max-w-6xl">
+
+        <header class="text-center my-16 md:my-24 fade-in-section">
+            <div class="flex justify-center items-center gap-4 mb-4">
+                <img src="logo.png" alt="ArcGX Logo" class="h-12 w-12 md:h-16 md:w-16" onerror="this.style.display='none'">
+                <p class="text-3xl md:text-4xl font-bold">
+                    <span style="color: #0cc0df;">Arc</span><span style="color: #ff7f70;">GX</span>
+                </p>
+            </div>
+            <h1 class="text-4xl md:text-6xl font-black text-[#0D1B2A]">
+                நெய்தல் கவசம்
+                <span class="block text-3xl md:text-5xl mt-2">Neithal Kavasam</span>
+            </h1>
+            <p class="mt-3 text-lg md:text-2xl font-semibold gradient-text">A Predictive Coastal Resilience Dashboard</p>
+        </header>
+
+        <section id="introduction" class="my-20 text-center fade-in-section">
+             <div class="max-w-4xl mx-auto">
+                <h2 class="text-3xl md:text-4xl font-bold mb-6 text-[#0D1B2A]">Protecting India's Coastline with Predictive Analytics</h2>
+                <p class="text-lg text-gray-700 leading-relaxed">
+                    **ArcGX** is a pioneering startup proud to present **Neithal Kavasam**, our flagship project designed to address the critical challenge of coastal vulnerability. Our mission is to transform how maritime stakeholders manage coastal assets by shifting the paradigm from reactive repairs to proactive, data-driven resilience.
+                </p>
+                <p class="text-lg text-gray-700 leading-relaxed mt-4">
+                    The **Neithal Kavasam** platform synthesizes complex environmental data into a simple, actionable risk score using our core innovation, the **Coastal Vulnerability Index (CVI)**. This allows port authorities, industrial plants, and coastal communities to identify, monitor, and predict erosion hotspots with unprecedented accuracy, empowering them to protect critical infrastructure and enhance operational safety.
+                </p>
+                <div class="mt-12 bg-gray-100 border-l-4 border-[#ff7f50] p-6 rounded-r-lg">
+                    <blockquote class="text-xl italic text-gray-800">
+                        "வருமுன்னர்க் காவாதான் வாழ்க்கை எரிமுன்னர்<br>
+                        வைத்தூறு போலக் கெடும்."
+                    </blockquote>
+                    <cite class="block text-right mt-4 text-gray-600 not-italic">
+                        - திருக்குறள் (435) <br>
+                        "The life of one who does not guard against future adversity will perish like a bale of straw before a fire."
+                    </cite>
+                </div>
+             </div>
+        </section>
+
+        <section id="problem" class="my-24 fade-in-section">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-[#0D1B2A]">The Critical Information Gap for Coastal Managers</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="content-card border-t-4 border-[#ff7f50]">
+                    <h3 class="text-xl font-bold mb-3 text-[#149ECA]">Problem 1: Data is Too Broad or Too Slow</h3>
+                    <p class="text-gray-600">Government data provides a national overview but lacks the real-time, high-resolution detail needed for specific operational decisions. Conversely, private surveys are project-based, expensive, and provide only a static snapshot in time, failing to capture continuous change.</p>
+                </div>
+                <div class="content-card border-t-4 border-[#149ECA]">
+                    <h3 class="text-xl font-bold mb-3 text-[#149ECA]">Problem 2: Lack of Actionable Intelligence</h3>
+                    <p class="text-gray-600">Raw geospatial data—maps, charts, and tables—requires expert interpretation. A non-technical port manager lacks a simple tool that clearly states: "This 200m section of your property is at high risk of erosion within the next six months." This leads to reactive, costly emergency repairs.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="solution" class="my-24 fade-in-section">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 text-[#0D1B2A]">Our Solution: The Neithal Kavasam Platform</h2>
+            <p class="text-center text-lg text-gray-700 mb-12 max-w-3xl mx-auto">The Neithal Kavasam dashboard is powered by our Data Fusion Engine, transforming complex data streams into clear, actionable intelligence.</p>
+            <div class="bg-gray-100 p-8 rounded-lg shadow-inner border">
+                <div class="flex flex-col md:flex-row items-center justify-center space-y-6 md:space-y-0 md:space-x-6 text-center">
+                    <div class="flex items-center space-x-4">
+                        <div class="p-4 bg-white border rounded-lg shadow-md"><p class="text-4xl">🛰️</p><p class="font-semibold mt-2">Satellites</p></div>
+                        <div class="p-4 bg-white border rounded-lg shadow-md"><p class="text-4xl">🚁</p><p class="font-semibold mt-2">Drones</p></div>
+                    </div>
+                    <div class="text-5xl font-thin text-gray-400 mx-4 hidden md:block">&rarr;</div>
+                    <div class="text-5xl font-thin text-gray-400 mx-4 md:hidden">&darr;</div>
+                    <div class="p-5 bg-[#0D1B2A] text-white rounded-lg shadow-xl font-bold text-lg">Data Fusion Engine</div>
+                    <div class="text-5xl font-thin text-gray-400 mx-4 hidden md:block">&rarr;</div>
+                    <div class="text-5xl font-thin text-gray-400 mx-4 md:hidden">&darr;</div>
+                    <div class="p-5 bg-[#149ECA] text-white rounded-lg shadow-xl font-bold text-lg">Predictive Dashboard</div>
+                </div>
+            </div>
+        </section>
+
+        <section id="cvi" class="my-24 fade-in-section">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 text-[#0D1B2A]">Core Innovation: The Coastal Vulnerability Index (CVI)</h2>
+            <p class="text-center text-lg text-gray-700 mb-10 max-w-3xl mx-auto">The CVI is our unique, algorithmically calculated risk score. This radar chart visualizes the key factors contributing to vulnerability, allowing for quick comparison between different coastal sections.</p>
+            <div class="content-card">
+                <div class="chart-container">
+                    <canvas id="cviChart"></canvas>
+                </div>
+            </div>
+        </section>
+        
+        <section id="business-plan" class="my-24 fade-in-section">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 text-[#0D1B2A]">Our Business Plan: A Subscription-Based Model</h2>
+            <p class="text-center text-lg text-gray-700 mb-12 max-w-3xl mx-auto">We will operate on a B2B/B2G Software-as-a-Service (SaaS) model, offering tiered annual subscriptions. This provides clients with continuous data updates, platform improvements, and dedicated support without a large upfront capital expenditure.</p>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="content-card">
+                    <h3 class="font-bold text-xl text-center text-white bg-[#0D1B2A] py-2 rounded-t-lg">Enterprise</h3>
+                    <div class="p-6 border-x border-b rounded-b-lg">
+                        <p class="font-semibold text-gray-700 mb-4">For Major Ports & Industries</p>
+                        <ul class="space-y-2 text-gray-600">
+                            <li>✓ Full Dashboard Access</li>
+                            <li>✓ High-Frequency Drone Scans</li>
+                            <li>✓ Predictive Analytics</li>
+                            <li>✓ API Integration</li>
+                            <li>✓ Dedicated Support</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="content-card">
+                    <h3 class="font-bold text-xl text-center text-white bg-[#149ECA] py-2 rounded-t-lg">Professional</h3>
+                    <div class="p-6 border-x border-b rounded-b-lg">
+                        <p class="font-semibold text-gray-700 mb-4">For Government & Infrastructure</p>
+                        <ul class="space-y-2 text-gray-600">
+                            <li>✓ Full Dashboard Access</li>
+                            <li>✓ Quarterly Drone Scans</li>
+                            <li>✓ CVI Monitoring</li>
+                            <li>✓ Standard Support</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="content-card">
+                    <h3 class="font-bold text-xl text-center text-white bg-[#ff7f50] py-2 rounded-t-lg">Community</h3>
+                    <div class="p-6 border-x border-b rounded-b-lg">
+                        <p class="font-semibold text-gray-700 mb-4">For Local Bodies & NGOs</p>
+                        <ul class="space-y-2 text-gray-600">
+                            <li>✓ Essential Dashboard</li>
+                            <li>✓ Annual CVI Report</li>
+                            <li>✓ Erosion Hotspot Alerts</li>
+                            <li>✓ Community Support</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="tech-stack" class="my-24 fade-in-section">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-[#0D1B2A]">Our Technology Stack</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                <div class="content-card"><h3 class="text-2xl font-bold mb-3 text-[#149ECA]">Drone Platform</h3><p class="text-6xl mb-3">🚁</p><p class="font-semibold">VTOL Fixed-Wing Drone</p><p class="text-gray-600 mt-1">Efficiently surveys large coastal areas.</p></div>
+                <div class="content-card"><h3 class="text-2xl font-bold mb-3 text-[#149ECA]">Drone Sensors</h3><p class="text-6xl mb-3">📸</p><p class="font-semibold">Sony A7R IV & MicaSense RedEdge-P</p><p class="text-gray-600 mt-1">For 3D models & vegetation health.</p></div>
+                <div class="content-card"><h3 class="text-2xl font-bold mb-3 text-[#149ECA]">Satellite Data</h3><p class="text-6xl mb-3">🛰️</p><p class="font-semibold">Sentinel-2 & Landsat 8/9</p><p class="text-gray-600 mt-1">For historical & continuous analysis.</p></div>
+            </div>
+        </section>
+        
+        <section id="customers" class="my-24 fade-in-section">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-4 text-[#0D1B2A]">Target Customers & Impact</h2>
+            <p class="text-center text-lg text-gray-700 mb-10 max-w-3xl mx-auto">Our platform is designed for a diverse range of maritime and coastal stakeholders, providing tailored risk assessment and operational intelligence.</p>
+            <div class="content-card">
+                <div class="chart-container h-96">
+                    <canvas id="impactChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section id="roadmap" class="my-24 fade-in-section">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-16 text-[#0D1B2A]">Our Execution Roadmap</h2>
+            <div class="relative pl-10 border-l-4 border-[#0D1B2A]">
+                <div class="mb-16 relative timeline-item"><h3 class="text-xl font-bold text-[#149ECA]">Phase 1: Foundation & MVP (Months 1-6)</h3><p class="text-gray-600 mt-2">Develop the core CVI algorithm and data pipeline. Build the MVP dashboard and validate with a pilot study along the Chennai-Mahabalipuram coast.</p></div>
+                <div class="mb-16 relative timeline-item"><h3 class="text-xl font-bold text-[#149ECA]">Phase 2: Pilot Client & Enhancement (Months 7-12)</h3><p class="text-gray-600 mt-2">Onboard a pilot client (e.g., a local port) for a trial. Refine the product based on user feedback and integrate the predictive analytics model.</p></div>
+                <div class="relative timeline-item"><h3 class="text-xl font-bold text-[#149ECA]">Phase 3: Scale-Up & Commercialization (Months 13-24)</h3><p class="text-gray-600 mt-2">Begin sales and marketing to acquire paying customers. Expand service to other key coastal areas and scale the cloud infrastructure.</p></div>
+            </div>
+        </section>
+
+        <section id="ushus-alignment" class="my-24 fade-in-section">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-[#0D1B2A]">Alignment with USHUS Program Objectives</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="content-card text-center"><p class="text-4xl font-black text-[#ff7f50]">#2</p><h3 class="text-lg font-bold mt-2 text-[#149ECA]">AI & Machine Learning</h3></div>
+                <div class="content-card text-center"><p class="text-4xl font-black text-[#ff7f50]">#4</p><h3 class="text-lg font-bold mt-2 text-[#149ECA]">Smart Technologies</h3></div>
+                <div class="content-card text-center"><p class="text-4xl font-black text-[#ff7f50]">#8</p><h3 class="text-lg font-bold mt-2 text-[#149ECA]">Simpler & Safer Sector</h3></div>
+                <div class="content-card text-center"><p class="text-4xl font-black text-[#ff7f50]">#9</p><h3 class="text-lg font-bold mt-2 text-[#149ECA]">Coastal Communities</h3></div>
+                <div class="content-card text-center sm:col-span-2 lg:col-span-1"><p class="text-4xl font-black text-[#ff7f50]">#10</p><h3 class="text-lg font-bold mt-2 text-[#149ECA]">Direct Maritime Application</h3></div>
+            </div>
+        </section>
+
+        <footer class="text-center mt-20 mb-8 fade-in-section">
+            <p class="text-gray-500">ArcGX presents Neithal Kavasam | A CSL USHUS Program Applicant</p>
+        </footer>
+
+    </main>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            document.querySelectorAll('.fade-in-section').forEach(section => {
+                observer.observe(section);
+            });
+        });
+
+        const wrapLabels = (label, maxLen = 16) => {
+            if (typeof label !== 'string' || label.length <= maxLen) {
+                return label;
+            }
+            const words = label.split(' ');
+            let currentLine = '';
+            const lines = [];
+            for (const word of words) {
+                if ((currentLine + ' ' + word).trim().length > maxLen && currentLine.length > 0) {
+                    lines.push(currentLine.trim());
+                    currentLine = word;
+                } else {
+                    currentLine = (currentLine + ' ' + word).trim();
+                }
+            }
+            if (currentLine) {
+                lines.push(currentLine.trim());
+            }
+            return lines;
+        };
+
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            if (!item) return '';
+            let label = item.chart.data.labels[item.dataIndex];
+            return Array.isArray(label) ? label.join(' ') : label;
+        };
+
+        const cviChartCtx = document.getElementById('cviChart').getContext('2d');
+        new Chart(cviChartCtx, {
+            type: 'radar',
+            data: {
+                labels: [
+                    'Historical Erosion Rate', 
+                    'Physical Vulnerability (Slope)', 
+                    'Asset Proximity to Shoreline', 
+                    'Ecological Health (Vegetation)'
+                ].map(label => wrapLabels(label, 20)),
+                datasets: [{
+                    label: 'High-Risk Section',
+                    data: [8, 9, 7, 4],
+                    backgroundColor: 'rgba(255, 127, 80, 0.2)',
+                    borderColor: '#ff7f50',
+                    pointBackgroundColor: '#ff7f50',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: '#ff7f50'
+                }, {
+                    label: 'Low-Risk Section',
+                    data: [2, 3, 3, 8],
+                    backgroundColor: 'rgba(20, 158, 202, 0.2)',
+                    borderColor: '#149ECA',
+                    pointBackgroundColor: '#149ECA',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: '#149ECA'
+                }]
+            },
+            options: {
+                maintainAspectRatio: false,
+                scales: {
+                    r: {
+                        angleLines: { color: '#dee2e6' },
+                        grid: { color: '#dee2e6' },
+                        pointLabels: { 
+                            font: { size: 12, weight: 'bold' },
+                            color: '#0D1B2A'
+                        },
+                        ticks: {
+                            backdropColor: 'transparent',
+                            color: '#6c757d',
+                            stepSize: 2
+                        },
+                        suggestedMin: 0,
+                        suggestedMax: 10
+                    }
+                },
+                plugins: {
+                    legend: { position: 'top' },
+                    tooltip: { callbacks: { title: tooltipTitleCallback } }
+                }
+            }
+        });
+
+        const impactChartCtx = document.getElementById('impactChart').getContext('2d');
+        new Chart(impactChartCtx, {
+            type: 'bar',
+            data: {
+                labels: [
+                    'Major & Minor Ports', 
+                    'Coastal Industrial Plants', 
+                    'Infrastructure Companies', 
+                    'Government Bodies', 
+                    'Coastal Tourism & Communities'
+                ].map(label => wrapLabels(label, 25)),
+                datasets: [{
+                    label: 'Applicability & Impact Score',
+                    data: [9.5, 8.5, 8, 9, 9],
+                    backgroundColor: ['#0D1B2A', '#149ECA', '#4682B4', '#ff7f50', '#fca311'],
+                    borderRadius: 4
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        grid: { display: false },
+                        ticks: { font: { weight: '600' }, color: '#0D1B2A' },
+                        suggestedMax: 10
+                    },
+                    y: {
+                        grid: { color: 'rgba(0, 0, 0, 0.05)' },
+                        ticks: { font: { weight: '600' }, color: '#0D1B2A' }
+                    }
+                },
+                plugins: {
+                    legend: { display: false },
+                    tooltip: { callbacks: { title: tooltipTitleCallback } }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
